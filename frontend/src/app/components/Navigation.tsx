@@ -1,6 +1,16 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
-import { Menu, X, ChevronDown, Phone, Mail, GraduationCap, ExternalLink, Sun, Moon } from "lucide-react";
+import {
+  Menu,
+  X,
+  ChevronDown,
+  Phone,
+  Mail,
+  GraduationCap,
+  ExternalLink,
+  Sun,
+  Moon,
+} from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../contexts/ThemeContext";
 
@@ -109,7 +119,9 @@ export function Navigation() {
   return (
     <>
       {/* Top Info Bar */}
-      <div className={`hidden lg:block border-b relative z-50 transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] border-[#D4AF37]/10" : "bg-[#F0F4FF] border-[#D4AF37]/15"}`}>
+      <div
+        className={`hidden lg:block border-b relative z-50 transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] border-[#D4AF37]/10" : "bg-[#F0F4FF] border-[#D4AF37]/15"}`}
+      >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-10">
             <div className="flex items-center space-x-6">
@@ -182,8 +194,10 @@ export function Navigation() {
                     alt="AJKKSAPT Logo"
                     className="w-full h-full object-contain"
                     onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display = "none";
-                      (e.currentTarget.parentElement as HTMLElement).innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>';
+                      (e.currentTarget as HTMLImageElement).style.display =
+                        "none";
+                      (e.currentTarget.parentElement as HTMLElement).innerHTML =
+                        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>';
                     }}
                   />
                 </div>
@@ -436,7 +450,7 @@ export function Navigation() {
             </div>
 
             {/* Apply Now + Theme Toggle + Mobile Menu */}
-            <div className="flex items-center space-x-2">
+            <div className="flex items-center space-x-2 xl:space-x-4">
               <Link
                 to="/admission"
                 className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold text-sm hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105"
@@ -444,12 +458,12 @@ export function Navigation() {
                 Apply Now
               </Link>
 
-              {/* Theme Toggle Button */}
+              {/* Theme Toggle Button - Desktop Only */}
               <motion.button
                 onClick={toggleTheme}
                 whileTap={{ scale: 0.9 }}
                 title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                className={`relative w-[52px] h-[28px] rounded-full transition-all duration-300 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 ${
+                className={`hidden lg:flex relative w-[52px] h-[28px] rounded-full transition-all duration-300 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 ${
                   isDark
                     ? "bg-[#1a1a1a] border border-[#D4AF37]/30"
                     : "bg-gradient-to-r from-[#D4AF37]/20 to-[#C5A059]/20 border border-[#D4AF37]/40"
@@ -467,11 +481,23 @@ export function Navigation() {
                 >
                   <AnimatePresence mode="wait">
                     {isDark ? (
-                      <motion.div key="moon" initial={{ rotate: -30, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 30, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <motion.div
+                        key="moon"
+                        initial={{ rotate: -30, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: 30, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <Moon size={12} className="text-[#0A0A0A]" />
                       </motion.div>
                     ) : (
-                      <motion.div key="sun" initial={{ rotate: 30, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -30, opacity: 0 }} transition={{ duration: 0.2 }}>
+                      <motion.div
+                        key="sun"
+                        initial={{ rotate: 30, opacity: 0 }}
+                        animate={{ rotate: 0, opacity: 1 }}
+                        exit={{ rotate: -30, opacity: 0 }}
+                        transition={{ duration: 0.2 }}
+                      >
                         <Sun size={12} className="text-[#0A0A0A]" />
                       </motion.div>
                     )}
@@ -479,9 +505,10 @@ export function Navigation() {
                 </motion.div>
               </motion.button>
 
+              {/* Mobile Menu Button */}
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="xl:hidden p-2 rounded-lg text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                className="lg:hidden p-2 rounded-lg text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
                 aria-label="Toggle menu"
               >
                 {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -672,9 +699,17 @@ export function Navigation() {
                   <span className="text-sm font-semibold">
                     {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
                   </span>
-                  <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${isDark ? "bg-[#D4AF37]/20" : "bg-[#D4AF37]/30"}`}>
-                    <div className={`absolute top-0.5 w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#C5A059] rounded-full shadow flex items-center justify-center transition-all duration-300 ${isDark ? "left-5" : "left-0.5"}`}>
-                      {isDark ? <Moon size={11} className="text-[#0A0A0A]" /> : <Sun size={11} className="text-[#0A0A0A]" />}
+                  <div
+                    className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${isDark ? "bg-[#D4AF37]/20" : "bg-[#D4AF37]/30"}`}
+                  >
+                    <div
+                      className={`absolute top-0.5 w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#C5A059] rounded-full shadow flex items-center justify-center transition-all duration-300 ${isDark ? "left-5" : "left-0.5"}`}
+                    >
+                      {isDark ? (
+                        <Moon size={11} className="text-[#0A0A0A]" />
+                      ) : (
+                        <Sun size={11} className="text-[#0A0A0A]" />
+                      )}
                     </div>
                   </div>
                 </button>

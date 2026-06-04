@@ -1,63 +1,78 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { ChevronLeft, ChevronRight, GraduationCap, ArrowRight } from "lucide-react";
+import {
+  ChevronLeft,
+  ChevronRight,
+  GraduationCap,
+  ArrowRight,
+} from "lucide-react";
 import { Link } from "react-router";
 
 const slides = [
   {
     tag: "Established 1984 · AICTE Approved · DOTE Affiliated",
     title: "Enter to Learn,\nFlyout to Serve",
-    description: "Annai J.K.K. Sampoorani Ammal Polytechnic College — 40 years of excellence in technical education, shaping over 1,400 students annually across 10 Diploma Programmes.",
+    description:
+      "Annai J.K.K. Sampoorani Ammal Polytechnic College — 40 years of excellence in technical education, shaping over 1,400 students annually across 10 Diploma Programmes.",
     cta: "Explore Programmes",
     ctaLink: "/departments",
     cta2: "Admission 2026–27",
     cta2Link: "/admission",
     image: "https://ajkksapt.com/images/Slider_Photos/image-slider-1.jpg",
-    fallback: "https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=1080&fit=crop",
+    fallback:
+      "https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=1080&fit=crop",
   },
   {
     tag: "21.34-Acre Campus · Gobichettipalayam",
     title: "World-Class\nInfrastructure",
-    description: "State-of-the-art laboratories, 250 computers across 5 centers, a library with 31,567 volumes, modern hostels, and a 20-route transport network.",
+    description:
+      "State-of-the-art laboratories, 250 computers across 5 centers, a library with 31,567 volumes, modern hostels, and a 20-route transport network.",
     cta: "Explore Campus",
     ctaLink: "/infrastructure",
     cta2: "Contact Us",
     cta2Link: "/contact",
     image: "https://ajkksapt.com/images/Slider_Photos/image-slider-2.jpg",
-    fallback: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop",
+    fallback:
+      "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=1080&fit=crop",
   },
   {
     tag: "National Award 1987 & 2004 · 40+ Years Legacy",
     title: "Nationally\nAwarded",
-    description: "Dr. J.K.K. Munirajahh's charitable trust has won National Awards from two Presidents of India for outstanding service to persons with disabilities and education.",
+    description:
+      "Dr. J.K.K. Munirajahh's charitable trust has won National Awards from two Presidents of India for outstanding service to persons with disabilities and education.",
     cta: "Our Legacy",
     ctaLink: "/impact",
     cta2: "About Us",
     cta2Link: "/about",
     image: "https://ajkksapt.com/images/Slider_Photos/image-slider-3.jpg",
-    fallback: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=1080&fit=crop",
+    fallback:
+      "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=1080&fit=crop",
   },
   {
     tag: "Community Polytechnic Since 1998",
     title: "15,000+ Rural\nYouth Empowered",
-    description: "Free skill training through the Community Polytechnic Scheme of Govt. of India since 1998, transforming rural livelihoods across the Erode region.",
+    description:
+      "Free skill training through the Community Polytechnic Scheme of Govt. of India since 1998, transforming rural livelihoods across the Erode region.",
     cta: "Our Activities",
     ctaLink: "/college-activities",
     cta2: "Our Impact",
     cta2Link: "/impact",
     image: "https://ajkksapt.com/images/Slider_Photos/image-slider-4.jpg",
-    fallback: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=1080&fit=crop",
+    fallback:
+      "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=1920&h=1080&fit=crop",
   },
   {
     tag: "10 Diploma Programmes · 3-Year Duration",
     title: "Your Career\nBegins Here",
-    description: "Choose from 10 industry-aligned Diploma programmes in Engineering, Technology, and Applied Sciences. Full-time and part-time options available.",
+    description:
+      "Choose from 10 industry-aligned Diploma programmes in Engineering, Technology, and Applied Sciences. Full-time and part-time options available.",
     cta: "View All Departments",
     ctaLink: "/departments",
     cta2: "Apply Now",
     cta2Link: "/admission",
     image: "https://ajkksapt.com/images/Slider_Photos/image-slider-5.jpg",
-    fallback: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&h=1080&fit=crop",
+    fallback:
+      "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&h=1080&fit=crop",
   },
 ];
 
@@ -81,7 +96,8 @@ export function HeroSlider() {
   };
 
   const nextSlide = () => goToSlide((currentSlide + 1) % slides.length);
-  const prevSlide = () => goToSlide((currentSlide - 1 + slides.length) % slides.length);
+  const prevSlide = () =>
+    goToSlide((currentSlide - 1 + slides.length) % slides.length);
 
   return (
     <section className="relative h-screen min-h-[600px] overflow-hidden hero-preserve">
@@ -114,7 +130,14 @@ export function HeroSlider() {
           </div>
 
           {/* Grid pattern overlay */}
-          <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)", backgroundSize: "60px 60px" }} />
+          <div
+            className="absolute inset-0 opacity-[0.03]"
+            style={{
+              backgroundImage:
+                "linear-gradient(rgba(212,175,55,1) 1px, transparent 1px), linear-gradient(90deg, rgba(212,175,55,1) 1px, transparent 1px)",
+              backgroundSize: "60px 60px",
+            }}
+          />
 
           {/* Content */}
           <div className="relative h-full flex items-center">
@@ -138,7 +161,7 @@ export function HeroSlider() {
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.25, duration: 0.9 }}
-                  className="text-5xl md:text-6xl lg:text-7xl font-black text-[#FAFAFA] mb-6 leading-[1.05]"
+                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#FAFAFA] mb-6 leading-[1.05]"
                   style={{ whiteSpace: "pre-line" }}
                 >
                   {slides[currentSlide].title}
@@ -164,7 +187,10 @@ export function HeroSlider() {
                     className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:scale-105 group"
                   >
                     {slides[currentSlide].cta}
-                    <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform duration-300" />
+                    <ArrowRight
+                      size={18}
+                      className="group-hover:translate-x-1 transition-transform duration-300"
+                    />
                   </Link>
                   <Link
                     to={slides[currentSlide].cta2Link}
@@ -191,25 +217,27 @@ export function HeroSlider() {
       </div>
 
       {/* Navigation Arrows */}
-      <div className="absolute bottom-8 right-8 flex items-center space-x-3 z-10">
+      <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 flex items-center space-x-2 md:space-x-3 z-10">
         <button
           onClick={prevSlide}
-          className="w-11 h-11 rounded-full bg-[#1a1a1a]/80 backdrop-blur-sm border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#0A0A0A] transition-all duration-300"
+          className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#1a1a1a]/80 backdrop-blur-sm border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#0A0A0A] transition-all duration-300"
           aria-label="Previous slide"
         >
-          <ChevronLeft size={20} />
+          <ChevronLeft size={16} className="md:block hidden" />
+          <ChevronLeft size={14} className="md:hidden" />
         </button>
         <button
           onClick={nextSlide}
-          className="w-11 h-11 rounded-full bg-[#1a1a1a]/80 backdrop-blur-sm border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#0A0A0A] transition-all duration-300"
+          className="w-9 h-9 md:w-11 md:h-11 rounded-full bg-[#1a1a1a]/80 backdrop-blur-sm border border-[#D4AF37]/20 flex items-center justify-center text-[#D4AF37] hover:bg-[#D4AF37] hover:text-[#0A0A0A] transition-all duration-300"
           aria-label="Next slide"
         >
-          <ChevronRight size={20} />
+          <ChevronRight size={16} className="md:block hidden" />
+          <ChevronRight size={14} className="md:hidden" />
         </button>
       </div>
 
       {/* Slide Indicators */}
-      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex space-x-3 z-10">
+      <div className="absolute bottom-4 md:bottom-8 left-1/2 -translate-x-1/2 flex space-x-2 md:space-x-3 z-10">
         {slides.map((_, index) => (
           <button
             key={index}
@@ -226,7 +254,9 @@ export function HeroSlider() {
 
       {/* Slide counter */}
       <div className="absolute top-24 right-8 z-10 hidden md:flex items-center gap-1 text-[#6B7280] text-sm">
-        <span className="text-[#D4AF37] font-bold text-lg">{String(currentSlide + 1).padStart(2, "0")}</span>
+        <span className="text-[#D4AF37] font-bold text-lg">
+          {String(currentSlide + 1).padStart(2, "0")}
+        </span>
         <span>/</span>
         <span>{String(slides.length).padStart(2, "0")}</span>
       </div>
