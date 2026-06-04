@@ -421,19 +421,6 @@ function FloatingButtons({ onOpenModal }: { onOpenModal: () => void }) {
       >
         {expanded ? <ChevronDown size={22} /> : <Bell size={22} />}
       </motion.button>
-
-      {/* WhatsApp — always visible */}
-      <a
-        href={`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent("Hello! I want to know about admissions at AJKKSAPT.")}`}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="w-14 h-14 rounded-full bg-gradient-to-br from-[#25D366] to-[#128C7E] flex items-center justify-center text-white shadow-[0_4px_20px_rgba(37,211,102,0.4)] hover:shadow-[0_6px_28px_rgba(37,211,102,0.6)] transition-all duration-300 relative hover:scale-110"
-        style={{ width: 56, height: 56 }}
-      >
-        <MessageCircle size={26} />
-        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full animate-ping" />
-        <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-red-500 rounded-full" />
-      </a>
     </div>
   );
 }
@@ -505,7 +492,7 @@ function AdmissionBar({ onOpenModal }: { onOpenModal: () => void }) {
                   href={`https://wa.me/${WHATSAPP_NUM}?text=${encodeURIComponent("Hi! I want information about admissions.")}`}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="hidden sm:flex px-4 py-2 bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-bold rounded-xl hover:bg-[#25D366]/25 transition-all duration-300 text-xs items-center gap-1.5 whitespace-nowrap"
+                  className="hidden lg:flex px-4 py-2 bg-[#25D366]/15 border border-[#25D366]/30 text-[#25D366] font-bold rounded-xl hover:bg-[#25D366]/25 transition-all duration-300 text-xs items-center gap-1.5 whitespace-nowrap"
                 >
                   <MessageCircle size={13} /> WhatsApp
                 </a>

@@ -100,7 +100,7 @@ export function HeroSlider() {
     goToSlide((currentSlide - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden hero-preserve">
+    <section className="relative min-h-screen h-auto sm:h-screen overflow-hidden hero-preserve pt-20 sm:pt-0">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}
@@ -140,18 +140,25 @@ export function HeroSlider() {
           />
 
           {/* Content */}
-          <div className="relative h-full flex items-center">
-            <div className="max-w-7xl mx-auto px-6 lg:px-8 w-full">
-              <div className="max-w-3xl">
+          <div className="relative min-h-screen sm:h-full flex items-center py-12 sm:py-0">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+              <div className="w-full sm:max-w-3xl">
                 <motion.div
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.15, duration: 0.8 }}
-                  className="mb-5"
+                  className="mb-3 md:mb-5"
                 >
-                  <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full">
-                    <GraduationCap size={14} className="text-[#D4AF37]" />
-                    <span className="text-[#D4AF37] text-xs font-semibold tracking-widest uppercase">
+                  <div className="inline-flex items-center gap-2 px-3 py-1.5 md:px-4 md:py-2 bg-[#D4AF37]/10 border border-[#D4AF37]/30 rounded-full">
+                    <GraduationCap
+                      size={12}
+                      className="md:hidden text-[#D4AF37]"
+                    />
+                    <GraduationCap
+                      size={14}
+                      className="hidden md:block text-[#D4AF37]"
+                    />
+                    <span className="text-[#D4AF37] text-xs md:text-sm font-semibold tracking-widest uppercase">
                       {slides[currentSlide].tag}
                     </span>
                   </div>
@@ -161,7 +168,7 @@ export function HeroSlider() {
                   initial={{ y: 40, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.25, duration: 0.9 }}
-                  className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-black text-[#FAFAFA] mb-6 leading-[1.05]"
+                  className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-black text-[#FAFAFA] mb-3 sm:mb-6 leading-tight sm:leading-[1.05]"
                   style={{ whiteSpace: "pre-line" }}
                 >
                   {slides[currentSlide].title}
@@ -171,7 +178,7 @@ export function HeroSlider() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.38, duration: 0.8 }}
-                  className="text-base md:text-lg text-[#9CA3AF] mb-10 leading-relaxed max-w-2xl"
+                  className="text-sm sm:text-base md:text-lg text-[#9CA3AF] mb-6 sm:mb-10 leading-relaxed max-w-2xl"
                 >
                   {slides[currentSlide].description}
                 </motion.p>
@@ -180,21 +187,25 @@ export function HeroSlider() {
                   initial={{ y: 30, opacity: 0 }}
                   animate={{ y: 0, opacity: 1 }}
                   transition={{ delay: 0.5, duration: 0.8 }}
-                  className="flex flex-wrap gap-4"
+                  className="flex flex-col sm:flex-row flex-wrap gap-3 md:gap-4"
                 >
                   <Link
                     to={slides[currentSlide].ctaLink}
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:scale-105 group"
+                    className="inline-flex items-center justify-center sm:justify-start gap-2 px-6 sm:px-8 py-3 md:py-4 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_30px_rgba(212,175,55,0.5)] hover:scale-105 group text-sm md:text-base"
                   >
                     {slides[currentSlide].cta}
                     <ArrowRight
+                      size={16}
+                      className="group-hover:translate-x-1 transition-transform duration-300 md:hidden"
+                    />
+                    <ArrowRight
                       size={18}
-                      className="group-hover:translate-x-1 transition-transform duration-300"
+                      className="hidden md:block group-hover:translate-x-1 transition-transform duration-300"
                     />
                   </Link>
                   <Link
                     to={slides[currentSlide].cta2Link}
-                    className="inline-flex items-center gap-2 px-8 py-4 rounded-xl border-2 border-[#D4AF37]/50 text-[#FAFAFA] font-bold hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] transition-all duration-300 backdrop-blur-sm"
+                    className="inline-flex items-center justify-center sm:justify-start gap-2 px-6 sm:px-8 py-3 md:py-4 rounded-xl border-2 border-[#D4AF37]/50 text-[#FAFAFA] font-bold hover:bg-[#D4AF37]/10 hover:border-[#D4AF37] transition-all duration-300 backdrop-blur-sm text-sm md:text-base"
                   >
                     {slides[currentSlide].cta2}
                   </Link>

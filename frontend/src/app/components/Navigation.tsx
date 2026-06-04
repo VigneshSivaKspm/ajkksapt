@@ -202,11 +202,14 @@ export function Navigation() {
                   />
                 </div>
               </div>
-              <div className="hidden sm:block">
-                <div className="text-[#FAFAFA] font-extrabold text-lg tracking-tight leading-tight">
-                  AJKKSAPT
+              <div className="hidden xs:block">
+                <div className="text-[#FAFAFA] font-extrabold text-xs sm:text-sm md:text-base tracking-tight leading-tight">
+                  Annai J.K.K Sampoorani Ammal
                 </div>
-                <div className="text-[#D4AF37] text-[10px] tracking-widest uppercase leading-tight">
+                <div className="text-[#FAFAFA] font-extrabold text-xs sm:text-sm md:text-base tracking-tight leading-tight">
+                  Polytechnic College
+                </div>
+                <div className="text-[#D4AF37] text-[8px] sm:text-[9px] tracking-widest uppercase leading-tight">
                   Est. 1984 · Gobichettipalayam
                 </div>
               </div>
