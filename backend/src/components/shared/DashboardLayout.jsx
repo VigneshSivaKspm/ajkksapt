@@ -17,6 +17,10 @@ import {
   BarChart3,
   Sun,
   Moon,
+  ImageIcon,
+  Edit3,
+  Users2,
+  Quote,
 } from "lucide-react";
 import { useAuth } from "../../hooks/useAuth";
 import { useTheme } from "../../hooks/useTheme";
@@ -33,6 +37,15 @@ const NAV = [
   { to: "/announcements", icon: Bell, label: "Announcements" },
   { to: "/content", icon: Layers, label: "CMS" },
   { to: "/audit", icon: ScrollText, label: "Audit Logs", adminOnly: true },
+
+  // Frontend Content Management
+  { divider: true, label: "Frontend Content" },
+  { to: "/hero-management", icon: ImageIcon, label: "Hero Slider" },
+  { to: "/home-content", icon: Edit3, label: "Home Content" },
+  { to: "/pages-content", icon: FileText, label: "Pages Content" },
+  { to: "/gallery", icon: ImageIcon, label: "Gallery" },
+  { to: "/testimonials", icon: Quote, label: "Testimonials" },
+  { to: "/staff-directory", icon: Users2, label: "Staff Directory" },
 ];
 
 const ROLE_BADGE = {
@@ -95,33 +108,47 @@ export default function DashboardLayout() {
       </div>
 
       {/* Nav */}
-      <nav className="flex-1 px-3 py-4 space-y-1">
-        {navItems.map(({ to, icon: Icon, label, end }) => (
-          <NavLink
-            key={to}
-            to={to}
-            end={end}
-            onClick={() => setOpen(false)}
-            className={({ isActive }) => `
-              flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
-              ${
-                isActive
-                  ? "bg-brand-500/15 text-brand-400 border border-brand-500/25"
-                  : "text-surface-400 hover:text-white hover:bg-surface-700"
-              }
-            `}
-          >
-            {({ isActive }) => (
-              <>
-                <Icon size={16} />
-                <span className="flex-1">{label}</span>
-                {isActive && (
-                  <ChevronRight size={14} className="text-brand-500" />
-                )}
-              </>
-            )}
-          </NavLink>
-        ))}
+      <nav className="flex-1 px-3 py-4 space-y-1 overflow-y-auto">
+        {navItems.map((item, idx) => {
+          if (item.divider) {
+            return (
+              <div key={idx} className="pt-3 pb-2">
+                <p className="px-3 py-1 text-xs font-bold text-surface-500 uppercase tracking-widest">
+                  {item.label}
+                </p>
+                <div className="mt-1 border-t border-surface-700" />
+              </div>
+            );
+          }
+
+          const { to, icon: Icon, label, end } = item;
+          return (
+            <NavLink
+              key={to}
+              to={to}
+              end={end}
+              onClick={() => setOpen(false)}
+              className={({ isActive }) => `
+                flex items-center gap-3 px-3 py-2.5 rounded-lg text-sm font-medium transition-all duration-150
+                ${
+                  isActive
+                    ? "bg-brand-500/15 text-brand-400 border border-brand-500/25"
+                    : "text-surface-400 hover:text-white hover:bg-surface-700"
+                }
+              `}
+            >
+              {({ isActive }) => (
+                <>
+                  <Icon size={16} />
+                  <span className="flex-1">{label}</span>
+                  {isActive && (
+                    <ChevronRight size={14} className="text-brand-500" />
+                  )}
+                </>
+              )}
+            </NavLink>
+          );
+        })}
       </nav>
 
       {/* User panel */}
