@@ -167,14 +167,17 @@ export function Navigation() {
       </div>
 
       {/* College Header - Below Top Info Bar */}
-      <CollegeHeader />
+      <CollegeHeader
+        isMobileMenuOpen={isMobileMenuOpen}
+        onToggleMobileMenu={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      />
 
-      {/* Main Navigation - Sticky */}
+      {/* Main Navigation - Sticky - Hidden on Mobile */}
       <motion.nav
         initial={{ y: 0 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`sticky top-20 z-40 transition-all duration-500 border-b ${
+        className={`hidden lg:block sticky top-20 z-40 transition-all duration-500 border-b ${
           isScrolled
             ? isDark
               ? "bg-[#0A0A0A]/96 backdrop-blur-xl border-[#D4AF37]/10 shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
@@ -481,218 +484,221 @@ export function Navigation() {
                   </AnimatePresence>
                 </motion.div>
               </motion.button>
-
-              {/* Mobile Menu Button */}
-              <button
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                className="lg:hidden p-2 rounded-lg text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                aria-label="Toggle menu"
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </button>
             </div>
           </div>
         </div>
       </motion.nav>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu - Slides from Left */}
       <AnimatePresence>
         {isMobileMenuOpen && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: "auto" }}
-            exit={{ opacity: 0, height: 0 }}
-            transition={{ duration: 0.35 }}
-            className={`fixed top-20 left-0 right-0 z-30 xl:hidden backdrop-blur-xl border-b border-[#D4AF37]/10 overflow-hidden ${isDark ? "bg-[#0A0A0A]/98" : "bg-white/98 shadow-[0_8px_24px_rgba(15,23,42,0.08)]"}`}
-          >
-            <div className="max-w-7xl mx-auto px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
-              <Link
-                to="/"
-                className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-              >
-                Home
-              </Link>
-
-              {/* About mobile accordion */}
-              <div>
-                <button
-                  onClick={() =>
-                    setMobileExpanded(
-                      mobileExpanded === "about" ? null : "about",
-                    )
-                  }
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                >
-                  <span>About Us</span>
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform duration-300 ${mobileExpanded === "about" ? "rotate-180 text-[#D4AF37]" : ""}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {mobileExpanded === "about" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="pl-4 space-y-1 overflow-hidden"
-                    >
-                      {aboutLinks.map((link) => (
-                        <Link
-                          key={link.path}
-                          to={link.path}
-                          className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              {/* Departments mobile accordion */}
-              <div>
-                <button
-                  onClick={() =>
-                    setMobileExpanded(
-                      mobileExpanded === "departments" ? null : "departments",
-                    )
-                  }
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                >
-                  <span>Departments</span>
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform duration-300 ${mobileExpanded === "departments" ? "rotate-180 text-[#D4AF37]" : ""}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {mobileExpanded === "departments" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="pl-4 space-y-1 overflow-hidden"
-                    >
-                      {departmentLinks.map((link) => (
-                        <Link
-                          key={link.path}
-                          to={link.path}
-                          className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <Link
-                to="/examination"
-                className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-              >
-                Examination
-              </Link>
-              <Link
-                to="/infrastructure"
-                className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-              >
-                Infrastructure
-              </Link>
-              <Link
-                to="/admission"
-                className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-              >
-                Admission
-              </Link>
-
-              {/* Activities mobile accordion */}
-              <div>
-                <button
-                  onClick={() =>
-                    setMobileExpanded(
-                      mobileExpanded === "activities" ? null : "activities",
-                    )
-                  }
-                  className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                >
-                  <span>Activities</span>
-                  <ChevronDown
-                    size={18}
-                    className={`transition-transform duration-300 ${mobileExpanded === "activities" ? "rotate-180 text-[#D4AF37]" : ""}`}
-                  />
-                </button>
-                <AnimatePresence>
-                  {mobileExpanded === "activities" && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: "auto" }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.25 }}
-                      className="pl-4 space-y-1 overflow-hidden"
-                    >
-                      {activitiesLinks.map((link) => (
-                        <Link
-                          key={link.path}
-                          to={link.path}
-                          className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-                        >
-                          {link.label}
-                        </Link>
-                      ))}
-                    </motion.div>
-                  )}
-                </AnimatePresence>
-              </div>
-
-              <Link
-                to="/contact"
-                className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
-              >
-                Contact Us
-              </Link>
-
-              <div className="pt-2 pb-4">
+          <>
+            <motion.div
+              initial={{ opacity: 0, x: -300 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -300 }}
+              transition={{ duration: 0.35, ease: "easeInOut" }}
+              className={`fixed top-0 left-0 h-screen w-72 z-40 lg:hidden backdrop-blur-xl overflow-hidden ${isDark ? "bg-[#0A0A0A]/98" : "bg-white/98 shadow-[8px_0_24px_rgba(15,23,42,0.08)]"}`}
+            >
+              <div className="pt-24 px-4 py-4 space-y-1 max-h-[100vh] overflow-y-auto">
                 <Link
-                  to="/admission"
-                  className="block text-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold text-base hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300"
+                  to="/"
+                  className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
                 >
-                  Apply Now — 2026-27
+                  Home
                 </Link>
 
-                {/* Mobile Theme Toggle */}
-                <button
-                  onClick={toggleTheme}
-                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 border ${
-                    isDark
-                      ? "bg-[#1a1a1a] border-[#D4AF37]/20 text-[#FAFAFA]"
-                      : "bg-[#EEF2FF] border-[#D4AF37]/20 text-[#0F172A]"
-                  }`}
-                >
-                  <span className="text-sm font-semibold">
-                    {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
-                  </span>
-                  <div
-                    className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${isDark ? "bg-[#D4AF37]/20" : "bg-[#D4AF37]/30"}`}
+                {/* About mobile accordion */}
+                <div>
+                  <button
+                    onClick={() =>
+                      setMobileExpanded(
+                        mobileExpanded === "about" ? null : "about",
+                      )
+                    }
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
                   >
+                    <span>About Us</span>
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${mobileExpanded === "about" ? "rotate-180 text-[#D4AF37]" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileExpanded === "about" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="pl-4 space-y-1 overflow-hidden"
+                      >
+                        {aboutLinks.map((link) => (
+                          <Link
+                            key={link.path}
+                            to={link.path}
+                            className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Departments mobile accordion */}
+                <div>
+                  <button
+                    onClick={() =>
+                      setMobileExpanded(
+                        mobileExpanded === "departments" ? null : "departments",
+                      )
+                    }
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                  >
+                    <span>Departments</span>
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${mobileExpanded === "departments" ? "rotate-180 text-[#D4AF37]" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileExpanded === "departments" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="pl-4 space-y-1 overflow-hidden"
+                      >
+                        {departmentLinks.map((link) => (
+                          <Link
+                            key={link.path}
+                            to={link.path}
+                            className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <Link
+                  to="/examination"
+                  className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                >
+                  Examination
+                </Link>
+                <Link
+                  to="/infrastructure"
+                  className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                >
+                  Infrastructure
+                </Link>
+                <Link
+                  to="/admission"
+                  className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                >
+                  Admission
+                </Link>
+
+                {/* Activities mobile accordion */}
+                <div>
+                  <button
+                    onClick={() =>
+                      setMobileExpanded(
+                        mobileExpanded === "activities" ? null : "activities",
+                      )
+                    }
+                    className="w-full flex items-center justify-between px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                  >
+                    <span>Activities</span>
+                    <ChevronDown
+                      size={18}
+                      className={`transition-transform duration-300 ${mobileExpanded === "activities" ? "rotate-180 text-[#D4AF37]" : ""}`}
+                    />
+                  </button>
+                  <AnimatePresence>
+                    {mobileExpanded === "activities" && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: "auto" }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.25 }}
+                        className="pl-4 space-y-1 overflow-hidden"
+                      >
+                        {activitiesLinks.map((link) => (
+                          <Link
+                            key={link.path}
+                            to={link.path}
+                            className="block px-4 py-2 rounded-lg text-sm text-[#9CA3AF] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                          >
+                            {link.label}
+                          </Link>
+                        ))}
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                <Link
+                  to="/contact"
+                  className="block px-4 py-3 rounded-xl text-base font-medium text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
+                >
+                  Contact Us
+                </Link>
+
+                <div className="pt-2 pb-4">
+                  <Link
+                    to="/admission"
+                    className="block text-center px-6 py-3 rounded-xl bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold text-base hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300"
+                  >
+                    Apply Now — 2026-27
+                  </Link>
+
+                  {/* Mobile Theme Toggle */}
+                  <button
+                    onClick={toggleTheme}
+                    className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 border ${
+                      isDark
+                        ? "bg-[#1a1a1a] border-[#D4AF37]/20 text-[#FAFAFA]"
+                        : "bg-[#EEF2FF] border-[#D4AF37]/20 text-[#0F172A]"
+                    }`}
+                  >
+                    <span className="text-sm font-semibold">
+                      {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                    </span>
                     <div
-                      className={`absolute top-0.5 w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#C5A059] rounded-full shadow flex items-center justify-center transition-all duration-300 ${isDark ? "left-5" : "left-0.5"}`}
+                      className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${isDark ? "bg-[#D4AF37]/20" : "bg-[#D4AF37]/30"}`}
                     >
-                      {isDark ? (
-                        <Moon size={11} className="text-[#0A0A0A]" />
-                      ) : (
-                        <Sun size={11} className="text-[#0A0A0A]" />
-                      )}
+                      <div
+                        className={`absolute top-0.5 w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#C5A059] rounded-full shadow flex items-center justify-center transition-all duration-300 ${isDark ? "left-5" : "left-0.5"}`}
+                      >
+                        {isDark ? (
+                          <Moon size={11} className="text-[#0A0A0A]" />
+                        ) : (
+                          <Sun size={11} className="text-[#0A0A0A]" />
+                        )}
+                      </div>
                     </div>
-                  </div>
-                </button>
+                  </button>
+                </div>
               </div>
-            </div>
-          </motion.div>
+            </motion.div>
+
+            {/* Backdrop Overlay */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.35 }}
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="fixed inset-0 z-30 lg:hidden"
+            />
+          </>
         )}
       </AnimatePresence>
     </>
