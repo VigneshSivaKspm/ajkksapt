@@ -1,0 +1,100 @@
+// firestore.rules
+// Deploy with: firebase deploy --only firestore:rules
+
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ── Helper functions ─────────────────────────────────────────────────────
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function getUserData() {
+      return get(/databases/$(database)/documents/users/$(request.auth.uid)).data;
+    }
+
+    function isSuperAdmin() {
+      return isAuthenticated() && getUserData().role == 'super_admin';
+    }
+
+    function isDeptAdmin() {
+      return isAuthenticated() && getUserData().role == 'dept_admin';
+    }
+
+    function isStaff() {
+      return isAuthenticated() && getUserData().role == 'staff';
+    }
+
+    function isAnyAdmin() {
+      return isSuperAdmin() || isDeptAdmin();
+    }
+
+    function belongsToDept(departmentId) {
+      return getUserData().departmentId == departmentId;
+    }
+
+    // ── /users ────────────────────────────────────────────────────────────────
+    match /users/{userId} {
+      // Any authenticated user can read their own profile
+      allow read: if isAuthenticated() && (request.auth.uid == userId || isSuperAdmin());
+      // Only super_admin can create / update / delete user records
+      allow write: if isSuperAdmin();
+    }
+
+    // ── /leads ────────────────────────────────────────────────────────────────
+    match /leads/{leadId} {
+      // Super admin can do everything
+      allow read, write: if isSuperAdmin();
+      // Dept admin can only read/write leads belonging to their department
+      allow read, write: if isDeptAdmin() && belongsToDept(resource.data.departmentId);
+      // Staff can read leads in their own department only
+      allow read: if isStaff() && belongsToDept(resource.data.departmentId);
+      // Allow create (new lead submission) for dept admins in their dept
+      allow create: if isDeptAdmin() && belongsToDept(request.resource.data.departmentId);
+    }
+
+    // ── /results ──────────────────────────────────────────────────────────────
+    match /results/{resultId} {
+      // Super admin full access
+      allow read, write: if isSuperAdmin();
+      // Dept admin can manage results in their dept
+      allow read, write: if isDeptAdmin() && belongsToDept(resource.data.departmentId);
+      // Staff can create draft results (published must be false)
+      allow create: if isStaff()
+                    && belongsToDept(request.resource.data.departmentId)
+                    && request.resource.data.published == false;
+      // Staff can update only draft results (cannot publish)
+      allow update: if isStaff()
+                    && belongsToDept(resource.data.departmentId)
+                    && resource.data.published == false
+                    && request.resource.data.published == false;
+      // Staff can read results from their own dept
+      allow read: if isStaff() && belongsToDept(resource.data.departmentId);
+    }
+
+    // ── /content ──────────────────────────────────────────────────────────────
+    match /content/{contentId} {
+      // Super admin full access
+      allow read, write: if isSuperAdmin();
+      // Dept admin can manage content tagged to their department
+      allow read: if isDeptAdmin() && belongsToDept(resource.data.departmentId);
+      allow write: if isDeptAdmin() && belongsToDept(resource.data.departmentId);
+      // Staff can read and create draft content
+      allow read: if isStaff() && belongsToDept(resource.data.departmentId);
+      allow create: if isStaff()
+                    && belongsToDept(request.resource.data.departmentId)
+                    && request.resource.data.status == 'draft';
+    }
+
+    // ── /audit_logs ───────────────────────────────────────────────────────────
+    match /audit_logs/{logId} {
+      // Only super_admin can read audit logs
+      allow read: if isSuperAdmin();
+      // Any authenticated user can create a log entry (append-only)
+      allow create: if isAuthenticated();
+      // No updates or deletes allowed on audit logs
+      allow update, delete: if false;
+    }
+  }
+}

@@ -1,0 +1,153 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --brand: #f97316;
+  --brand-dim: #c2410c;
+}
+
+* {
+  scrollbar-width: thin;
+  scrollbar-color: #3d3d52 transparent;
+}
+
+*::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: #3d3d52;
+  border-radius: 3px;
+}
+
+/* Dark Mode (Default) */
+body {
+  background: #0a0a0f;
+  color: #e2e2ec;
+  font-family: "IBM Plex Sans", sans-serif;
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* Light Mode */
+html:not(.dark) body {
+  background: #ffffff;
+  color: #1f2937;
+}
+
+html:not(.dark) * {
+  scrollbar-color: #e5e7eb transparent;
+}
+
+html:not(.dark) *::-webkit-scrollbar-thumb {
+  background: #e5e7eb;
+}
+
+/* Light mode transitions for common elements */
+html:not(.dark) {
+  --surface-900: #ffffff;
+  --surface-800: #f8f9fa;
+  --surface-700: #f1f3f5;
+  --surface-600: #e9ecef;
+  --surface-500: #dee2e6;
+  --surface-400: #adb5bd;
+}
+
+html:not(.dark) .bg-surface-900 {
+  @apply bg-white;
+}
+
+html:not(.dark) .bg-surface-800 {
+  @apply bg-gray-50;
+}
+
+html:not(.dark) .bg-surface-700 {
+  @apply bg-gray-100;
+}
+
+html:not(.dark) .border-surface-600 {
+  @apply border-gray-200;
+}
+
+html:not(.dark) .text-white {
+  @apply text-gray-900;
+}
+
+html:not(.dark) .text-surface-400 {
+  @apply text-gray-600;
+}
+
+html:not(.dark) .text-surface-300 {
+  @apply text-gray-500;
+}
+
+html:not(.dark) .text-surface-500 {
+  @apply text-gray-700;
+}
+
+html:not(.dark) .hover\:bg-surface-700:hover {
+  @apply bg-gray-100;
+}
+
+html:not(.dark) .hover\:bg-surface-600:hover {
+  @apply bg-gray-200;
+}
+
+html:not(.dark) .hover\:text-white:hover {
+  @apply text-gray-900;
+}
+
+html:not(.dark) .placeholder\:text-surface-500::placeholder {
+  @apply placeholder-gray-400;
+}
+
+html:not(.dark) .bg-grid {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+}
+
+.font-display {
+  font-family: "Syne", sans-serif;
+}
+.font-mono {
+  font-family: "IBM Plex Mono", monospace;
+}
+
+/* Grid noise background */
+.bg-grid {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Glow ring utility */
+.ring-brand {
+  box-shadow: 0 0 0 1px rgba(249, 115, 22, 0.4);
+}
+
+.stat-card {
+  @apply bg-surface-800 border border-surface-600 rounded-xl p-5 relative overflow-hidden;
+}
+
+html:not(.dark) .stat-card {
+  @apply bg-gray-50 border-gray-200;
+}
+
+.stat-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    135deg,
+    rgba(249, 115, 22, 0.04) 0%,
+    transparent 60%
+  );
+  pointer-events: none;
+}
