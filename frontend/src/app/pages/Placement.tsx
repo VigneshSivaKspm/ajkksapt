@@ -41,7 +41,7 @@ export function Placement() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero Section */}
-      <section className="relative h-96 overflow-hidden">
+      <section className="relative h-96 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img
             src="https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=1920&h=600&fit=crop"

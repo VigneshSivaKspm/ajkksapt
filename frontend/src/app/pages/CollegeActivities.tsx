@@ -3,11 +3,14 @@ import { motion } from "motion/react";
 import { useLocation } from "react-router";
 import { Shield, Heart, Leaf, Lightbulb, TreePine, Users, ChevronRight } from "lucide-react";
 
+const LOGO_BASE = "https://ajkksapt.com/images/Gallery";
+
 const activities = [
   {
     id: "ncc",
     name: "NCC",
     fullName: "National Cadet Corps",
+    logo: `${LOGO_BASE}/Ncc_Logo.PNG`,
     icon: Shield,
     color: "from-green-600/20 to-emerald-600/5",
     border: "border-green-600/20",
@@ -24,6 +27,7 @@ const activities = [
     id: "nss",
     name: "NSS",
     fullName: "National Service Scheme",
+    logo: `${LOGO_BASE}/Nss_Logo.PNG`,
     icon: Users,
     color: "from-blue-600/20 to-indigo-600/5",
     border: "border-blue-600/20",
@@ -40,6 +44,7 @@ const activities = [
     id: "rrc",
     name: "RRC",
     fullName: "Red Ribbon Club",
+    logo: `${LOGO_BASE}/Rrc_Logo.PNG`,
     icon: Heart,
     color: "from-red-600/20 to-rose-600/5",
     border: "border-red-600/20",
@@ -55,6 +60,7 @@ const activities = [
     id: "yrc",
     name: "YRC",
     fullName: "Youth Red Cross",
+    logo: "",
     icon: Heart,
     color: "from-rose-600/20 to-pink-600/5",
     border: "border-rose-600/20",
@@ -70,6 +76,7 @@ const activities = [
     id: "ed-cell",
     name: "ED Cell",
     fullName: "Entrepreneurship Development Cell",
+    logo: "",
     icon: Lightbulb,
     color: "from-amber-600/20 to-yellow-600/5",
     border: "border-amber-600/20",
@@ -84,6 +91,7 @@ const activities = [
     id: "eco-green",
     name: "Eco Green Club",
     fullName: "Eco Green Club",
+    logo: `${LOGO_BASE}/Eco_Logo.PNG`,
     icon: Leaf,
     color: "from-green-600/20 to-teal-600/5",
     border: "border-green-600/20",
@@ -98,6 +106,7 @@ const activities = [
     id: "trekking",
     name: "Trekking Club",
     fullName: "Trekking Club",
+    logo: `${LOGO_BASE}/Trekking_Club.PNG`,
     icon: TreePine,
     color: "from-[#D4AF37]/20 to-[#C5A059]/5",
     border: "border-[#D4AF37]/20",
@@ -123,7 +132,7 @@ export function CollegeActivities() {
 
   return (
     <div className="min-h-screen pt-20">
-      <section className="relative h-72 overflow-hidden">
+      <section className="relative h-72 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=1920&h=600&fit=crop" alt="Activities" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />
@@ -168,8 +177,25 @@ export function CollegeActivities() {
               <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
                 <div className="lg:col-span-2">
                   <div className="flex items-center gap-4 mb-5">
-                    <div className={`w-14 h-14 bg-gradient-to-br ${activity.color} border ${activity.border} rounded-2xl flex items-center justify-center flex-shrink-0`}>
-                      <activity.icon size={26} className="text-[#D4AF37]" />
+                    <div className={`w-16 h-16 bg-white rounded-2xl flex items-center justify-center flex-shrink-0 border-2 ${activity.border} overflow-hidden`}>
+                      {activity.logo ? (
+                        <img
+                          src={activity.logo}
+                          alt={`${activity.name} logo`}
+                          className="w-12 h-12 object-contain"
+                          loading="lazy"
+                          onError={(e) => {
+                            const el = e.currentTarget as HTMLImageElement;
+                            el.style.display = "none";
+                            const parent = el.parentElement;
+                            if (parent) {
+                              parent.className = `w-16 h-16 bg-gradient-to-br ${activity.color} rounded-2xl flex items-center justify-center flex-shrink-0 border-2 ${activity.border}`;
+                            }
+                          }}
+                        />
+                      ) : (
+                        <activity.icon size={28} className="text-[#D4AF37]" />
+                      )}
                     </div>
                     <div>
                       <div className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase">{activity.name}</div>

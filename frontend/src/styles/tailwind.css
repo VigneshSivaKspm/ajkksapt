@@ -1,4 +1,135 @@
 @import 'tailwindcss' source(none);
 @source '../**/*.{js,ts,jsx,tsx}';
-
 @import 'tw-animate-css';
+
+/* ════════════════════════════════════════════════
+   LIGHT THEME — CSS INTERCEPTORS
+   These rules live outside @layer, giving them higher
+   specificity than Tailwind utilities. They automatically
+   remap all hardcoded dark hex values to light-theme
+   equivalents when html.dark is absent.
+   ════════════════════════════════════════════════ */
+
+/* ── PAGE SECTION BACKGROUNDS ─────────────────── */
+html:not(.dark) .bg-\[\#0A0A0A\]  { background-color: #F8FAFF; }
+html:not(.dark) .bg-\[\#0D0D0D\]  { background-color: #F0F4FF; }
+html:not(.dark) .bg-\[\#0F0F0F\]  { background-color: #F8FAFF; }
+html:not(.dark) .bg-\[\#0F0F10\]  { background-color: #F8FAFF; }
+html:not(.dark) .bg-\[\#080808\]  { background-color: #EEF2FF; }
+
+/* ── CARD / SURFACE BACKGROUNDS ────────────────── */
+html:not(.dark) .bg-\[\#111111\]  { background-color: #FFFFFF; box-shadow: var(--shadow-card); }
+html:not(.dark) .bg-\[\#121212\]  { background-color: #FFFFFF; box-shadow: var(--shadow-card); }
+html:not(.dark) .bg-\[\#1a1a1a\]  { background-color: #EEF2FF; }
+html:not(.dark) .bg-\[\#1A1A24\]  { background-color: #EEF2FF; }
+html:not(.dark) .bg-\[\#0A0A0A\]\/50 { background-color: rgba(248,250,255,0.5); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/40 { background-color: rgba(248,250,255,0.4); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/30 { background-color: rgba(241,245,249,0.5); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/15 { background-color: rgba(241,245,249,0.3); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/10 { background-color: rgba(212,175,55,0.06); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/5  { background-color: rgba(212,175,55,0.03); }
+html:not(.dark) .bg-\[\#111111\]\/10 { background-color: rgba(241,245,249,0.8); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/95 { background-color: rgba(248,250,255,0.97); }
+html:not(.dark) .bg-\[\#0A0A0A\]\/98 { background-color: rgba(248,250,255,0.98); }
+
+/* ── SECTION GRADIENT BACKGROUNDS (no opacity suffix = section bg) ── */
+html:not(.dark) .from-\[\#0A0A0A\]     { --tw-gradient-from: #F8FAFF var(--tw-gradient-from-position); }
+html:not(.dark) .from-\[\#0D0D0D\]     { --tw-gradient-from: #F0F4FF var(--tw-gradient-from-position); }
+html:not(.dark) .from-\[\#111111\]     { --tw-gradient-from: #FFFFFF var(--tw-gradient-from-position); }
+html:not(.dark) .from-\[\#0F0F0F\]     { --tw-gradient-from: #F8FAFF var(--tw-gradient-from-position); }
+html:not(.dark) .to-\[\#0A0A0A\]       { --tw-gradient-to: #F8FAFF; }
+html:not(.dark) .to-\[\#0D0D0D\]       { --tw-gradient-to: #F0F4FF; }
+html:not(.dark) .to-\[\#111111\]       { --tw-gradient-to: #FFFFFF; }
+html:not(.dark) .to-\[\#121212\]       { --tw-gradient-to: #FFFFFF; }
+html:not(.dark) .via-\[\#0A0A0A\]      { --tw-gradient-via: #F4F7FF; }
+
+/* ── TEXT COLORS ────────────────────────────────── */
+html:not(.dark) .text-\[\#FAFAFA\]     { color: #0F172A; }
+html:not(.dark) .text-\[\#6B7280\]     { color: #64748B; }
+html:not(.dark) .text-\[\#9CA3AF\]     { color: #475569; }
+html:not(.dark) .text-\[\#C8C8C8\]     { color: #475569; }
+html:not(.dark) .text-\[\#E2E2EC\]     { color: #334155; }
+
+/* ── EXCEPTIONS: Hero sections use dark overlays → keep text bright ── */
+/* Hero image overlays STAY dark (opacity variants not intercepted):     */
+/*   from-[#0A0A0A]/97, from-[#0A0A0A]/96, from-[#0A0A0A]/80 etc.      */
+/*   These use different CSS selectors (with \/) — untouched by above.   */
+
+/* Explicitly preserve white text for hero H1 headings (always on dark overlay) */
+html:not(.dark) h1.text-\[\#FAFAFA\]   { color: #FFFFFF !important; }
+/* Hero subtitle text in hero-preserve containers */
+html:not(.dark) .hero-preserve .text-\[\#FAFAFA\]  { color: #FFFFFF !important; }
+html:not(.dark) .hero-preserve .text-\[\#9CA3AF\]  { color: rgba(255,255,255,0.75) !important; }
+html:not(.dark) .hero-preserve .text-\[\#6B7280\]  { color: rgba(255,255,255,0.65) !important; }
+
+/* ── BORDERS ────────────────────────────────────── */
+/* gold borders already look great on light bg — slightly boost visibility */
+html:not(.dark) .border-\[\#D4AF37\]\/5  { border-color: rgba(212,175,55,0.12); }
+html:not(.dark) .border-\[\#D4AF37\]\/8  { border-color: rgba(212,175,55,0.18); }
+html:not(.dark) .border-\[\#D4AF37\]\/10 { border-color: rgba(212,175,55,0.22); }
+
+/* ── FORM INPUTS ────────────────────────────────── */
+html:not(.dark) .bg-\[\#0A0A0A\] input,
+html:not(.dark) .bg-\[\#111111\] input,
+html:not(.dark) input.bg-\[\#0A0A0A\] {
+  background-color: #F1F5F9;
+  color: #0F172A;
+  border-color: rgba(212,175,55,0.3);
+}
+
+/* ── SCROLLBAR ──────────────────────────────────── */
+html:not(.dark) ::-webkit-scrollbar { width: 6px; height: 6px; }
+html:not(.dark) ::-webkit-scrollbar-track { background: #F1F5F9; }
+html:not(.dark) ::-webkit-scrollbar-thumb { background: #CBD5E1; border-radius: 3px; }
+html:not(.dark) ::-webkit-scrollbar-thumb:hover { background: #94A3B8; }
+
+/* ── CARD HOVER SHADOWS in LIGHT MODE ─────────────
+   Enhance card depth in light mode — instead of glow, use real shadows */
+html:not(.dark) .hover\:shadow-\[0_0_30px_rgba\(212\,175\,55\,0\.1\)\]:hover {
+  box-shadow: var(--shadow-card-hover);
+}
+html:not(.dark) .hover\:shadow-\[0_0_25px_rgba\(212\,175\,55\,0\.08\)\]:hover {
+  box-shadow: 0 4px 20px rgba(15,23,42,0.10), 0 1px 4px rgba(15,23,42,0.05);
+}
+html:not(.dark) .hover\:shadow-\[0_8px_30px_rgba\(0\,0\,0\,0\.5\)\]:hover {
+  box-shadow: 0 8px 24px rgba(15,23,42,0.12), 0 2px 6px rgba(15,23,42,0.06);
+}
+html:not(.dark) .hover\:shadow-\[0_0_20px_rgba\(212\,175\,55\,0\.3\)\]:hover {
+  box-shadow: 0 4px 20px rgba(212,175,55,0.25), 0 1px 6px rgba(212,175,55,0.12);
+}
+
+/* ── GRID PATTERN (light version) ──────────────── */
+html:not(.dark) body {
+  background-color: #F8FAFF;
+}
+
+/* ── ANNOUNCEMENT TICKER: always gold, both modes ─ */
+/* (no changes needed — already uses gradient gold)  */
+
+/* ── FOOTER: stays dark in both modes (premium look) ─ */
+html:not(.dark) footer.bg-\[\#080808\] { background-color: #0F172A !important; }
+html:not(.dark) footer .bg-\[\#0A0A0A\] { background-color: #0F172A !important; }
+html:not(.dark) footer .bg-\[\#111111\] { background-color: #1E293B !important; box-shadow: none !important; }
+html:not(.dark) footer .text-\[\#FAFAFA\] { color: #F8FAFF !important; }
+html:not(.dark) footer .text-\[\#6B7280\] { color: #94A3B8 !important; }
+html:not(.dark) footer .text-\[\#9CA3AF\] { color: #CBD5E1 !important; }
+html:not(.dark) footer .border-\[\#D4AF37\]\/10 { border-color: rgba(212,175,55,0.15) !important; }
+
+/* ── CONVERSION KIT: modal and sticky bar ──────── */
+html:not(.dark) .bg-\[\#0F0F0F\] { background-color: #FFFFFF; box-shadow: 0 20px 60px rgba(15,23,42,0.15); }
+html:not(.dark) .bg-\[\#0F0F10\] { background-color: #FFFFFF; }
+
+/* ── SECTION HEADING TAGS (pill labels) ────────── */
+/* bg-[#D4AF37]/10 with border border-[#D4AF37]/20 stays same — looks great */
+
+/* ── LIGHT MODE: additional visual polish ─────── */
+html:not(.dark) .hover\:bg-\[\#D4AF37\]\/10:hover { background-color: rgba(212,175,55,0.12); }
+html:not(.dark) .hover\:bg-\[\#1a1a1a\]:hover { background-color: #EEF2FF; }
+html:not(.dark) .hover\:bg-\[\#D4AF37\]\/20:hover { background-color: rgba(212,175,55,0.18); }
+html:not(.dark) .hover\:bg-\[\#D4AF37\]\/5:hover  { background-color: rgba(212,175,55,0.08); }
+
+/* Input fields in forms */
+html:not(.dark) .bg-\[\#0A0A0A\].border-\[\#D4AF37\]\/20 {
+  background-color: #F8FAFF;
+  color: #0F172A;
+}

@@ -40,7 +40,7 @@ export function Admissions() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="relative h-80 overflow-hidden">
+      <section className="relative h-80 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=1920&h=600&fit=crop" alt="Admissions" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />

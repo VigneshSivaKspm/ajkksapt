@@ -1,15 +1,8 @@
 import { useState, useEffect, useRef } from "react";
 import { Link, useLocation } from "react-router";
-import {
-  Menu,
-  X,
-  ChevronDown,
-  Phone,
-  Mail,
-  GraduationCap,
-  ExternalLink,
-} from "lucide-react";
+import { Menu, X, ChevronDown, Phone, Mail, GraduationCap, ExternalLink, Sun, Moon } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
+import { useTheme } from "../contexts/ThemeContext";
 
 const aboutLinks = [
   { label: "Trust & Founder", path: "/about#trust" },
@@ -75,6 +68,7 @@ const activitiesLinks = [
 ];
 
 export function Navigation() {
+  const { isDark, toggleTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState<string | null>(null);
@@ -115,7 +109,7 @@ export function Navigation() {
   return (
     <>
       {/* Top Info Bar */}
-      <div className="hidden lg:block bg-[#0D0D0D] border-b border-[#D4AF37]/10 relative z-50">
+      <div className={`hidden lg:block border-b relative z-50 transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] border-[#D4AF37]/10" : "bg-[#F0F4FF] border-[#D4AF37]/15"}`}>
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-10">
             <div className="flex items-center space-x-6">
@@ -164,10 +158,14 @@ export function Navigation() {
         initial={{ y: -100 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-300 lg:sticky lg:top-0 ${
+        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 lg:sticky lg:top-0 ${
           isScrolled
-            ? "bg-[#0A0A0A]/95 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
-            : "bg-[#0A0A0A]"
+            ? isDark
+              ? "bg-[#0A0A0A]/96 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+              : "bg-white/96 backdrop-blur-xl border-b border-[#D4AF37]/15 shadow-[0_2px_20px_rgba(15,23,42,0.08)]"
+            : isDark
+              ? "bg-[#0A0A0A]"
+              : "bg-white border-b border-[#D4AF37]/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
@@ -249,7 +247,7 @@ export function Navigation() {
                       transition={{ duration: 0.2 }}
                       onMouseEnter={keepOpen}
                       onMouseLeave={closeDropdown}
-                      className="absolute top-full left-0 w-56 bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] overflow-hidden z-50 mt-1"
+                      className="absolute top-full left-0 w-56 bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden z-50 mt-1"
                     >
                       {aboutLinks.map((link) => (
                         <Link
@@ -297,7 +295,7 @@ export function Navigation() {
                       transition={{ duration: 0.2 }}
                       onMouseEnter={keepOpen}
                       onMouseLeave={closeDropdown}
-                      className="absolute top-full left-0 w-[480px] bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] overflow-hidden z-50 mt-1"
+                      className="absolute top-full left-0 w-[480px] bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden z-50 mt-1"
                     >
                       <div className="px-4 pt-4 pb-2 border-b border-[#D4AF37]/10">
                         <span className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase">
@@ -405,7 +403,7 @@ export function Navigation() {
                       transition={{ duration: 0.2 }}
                       onMouseEnter={keepOpen}
                       onMouseLeave={closeDropdown}
-                      className="absolute top-full left-0 w-52 bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.8)] overflow-hidden z-50 mt-1"
+                      className="absolute top-full left-0 w-52 bg-[#111111] border border-[#D4AF37]/20 rounded-xl shadow-[0_8px_32px_rgba(0,0,0,0.12)] overflow-hidden z-50 mt-1"
                     >
                       {activitiesLinks.map((link) => (
                         <Link
@@ -437,14 +435,50 @@ export function Navigation() {
               </Link>
             </div>
 
-            {/* Apply Now + Mobile Menu */}
-            <div className="flex items-center space-x-3">
+            {/* Apply Now + Theme Toggle + Mobile Menu */}
+            <div className="flex items-center space-x-2">
               <Link
                 to="/admission"
                 className="hidden sm:inline-flex items-center px-5 py-2.5 rounded-lg bg-gradient-to-r from-[#D4AF37] to-[#C5A059] text-[#0A0A0A] font-bold text-sm hover:from-[#C5A059] hover:to-[#D4AF37] transition-all duration-300 hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] hover:scale-105"
               >
                 Apply Now
               </Link>
+
+              {/* Theme Toggle Button */}
+              <motion.button
+                onClick={toggleTheme}
+                whileTap={{ scale: 0.9 }}
+                title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                className={`relative w-[52px] h-[28px] rounded-full transition-all duration-300 flex-shrink-0 focus:outline-none focus:ring-2 focus:ring-[#D4AF37]/50 ${
+                  isDark
+                    ? "bg-[#1a1a1a] border border-[#D4AF37]/30"
+                    : "bg-gradient-to-r from-[#D4AF37]/20 to-[#C5A059]/20 border border-[#D4AF37]/40"
+                }`}
+                aria-label="Toggle theme"
+              >
+                <motion.div
+                  animate={{ x: isDark ? 24 : 2 }}
+                  transition={{ type: "spring", stiffness: 500, damping: 30 }}
+                  className={`absolute top-[3px] w-[22px] h-[22px] rounded-full flex items-center justify-center shadow-md transition-colors duration-300 ${
+                    isDark
+                      ? "bg-[#D4AF37]"
+                      : "bg-gradient-to-br from-[#D4AF37] to-[#C5A059]"
+                  }`}
+                >
+                  <AnimatePresence mode="wait">
+                    {isDark ? (
+                      <motion.div key="moon" initial={{ rotate: -30, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: 30, opacity: 0 }} transition={{ duration: 0.2 }}>
+                        <Moon size={12} className="text-[#0A0A0A]" />
+                      </motion.div>
+                    ) : (
+                      <motion.div key="sun" initial={{ rotate: 30, opacity: 0 }} animate={{ rotate: 0, opacity: 1 }} exit={{ rotate: -30, opacity: 0 }} transition={{ duration: 0.2 }}>
+                        <Sun size={12} className="text-[#0A0A0A]" />
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </motion.div>
+              </motion.button>
+
               <button
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className="xl:hidden p-2 rounded-lg text-[#FAFAFA] hover:text-[#D4AF37] hover:bg-[#1a1a1a] transition-all duration-300"
@@ -465,7 +499,7 @@ export function Navigation() {
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.35 }}
-            className="fixed top-20 left-0 right-0 z-30 xl:hidden bg-[#0A0A0A]/98 backdrop-blur-xl border-b border-[#D4AF37]/10 overflow-hidden"
+            className={`fixed top-20 left-0 right-0 z-30 xl:hidden backdrop-blur-xl border-b border-[#D4AF37]/10 overflow-hidden ${isDark ? "bg-[#0A0A0A]/98" : "bg-white/98 shadow-[0_8px_24px_rgba(15,23,42,0.08)]"}`}
           >
             <div className="max-w-7xl mx-auto px-4 py-4 space-y-1 max-h-[80vh] overflow-y-auto">
               <Link
@@ -625,6 +659,25 @@ export function Navigation() {
                 >
                   Apply Now — 2026-27
                 </Link>
+
+                {/* Mobile Theme Toggle */}
+                <button
+                  onClick={toggleTheme}
+                  className={`w-full flex items-center justify-between px-4 py-3 rounded-xl transition-all duration-300 border ${
+                    isDark
+                      ? "bg-[#1a1a1a] border-[#D4AF37]/20 text-[#FAFAFA]"
+                      : "bg-[#EEF2FF] border-[#D4AF37]/20 text-[#0F172A]"
+                  }`}
+                >
+                  <span className="text-sm font-semibold">
+                    {isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                  </span>
+                  <div className={`w-11 h-6 rounded-full relative transition-colors duration-300 ${isDark ? "bg-[#D4AF37]/20" : "bg-[#D4AF37]/30"}`}>
+                    <div className={`absolute top-0.5 w-5 h-5 bg-gradient-to-br from-[#D4AF37] to-[#C5A059] rounded-full shadow flex items-center justify-center transition-all duration-300 ${isDark ? "left-5" : "left-0.5"}`}>
+                      {isDark ? <Moon size={11} className="text-[#0A0A0A]" /> : <Sun size={11} className="text-[#0A0A0A]" />}
+                    </div>
+                  </div>
+                </button>
               </div>
             </div>
           </motion.div>

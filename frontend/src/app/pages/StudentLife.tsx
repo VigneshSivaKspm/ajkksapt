@@ -25,7 +25,7 @@ const snapshots = [
 export function StudentLife() {
   return (
     <div className="min-h-screen pt-20">
-      <section className="relative h-72 overflow-hidden">
+      <section className="relative h-72 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=1920&h=600&fit=crop" alt="Student Life" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />

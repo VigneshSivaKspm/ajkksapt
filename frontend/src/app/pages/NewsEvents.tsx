@@ -37,7 +37,7 @@ export function NewsEvents() {
 
   return (
     <div className="min-h-screen pt-20">
-      <section className="relative h-64 overflow-hidden">
+      <section className="relative h-64 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=1920&h=500&fit=crop" alt="News" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />

@@ -84,7 +84,7 @@ export function HeroSlider() {
   const prevSlide = () => goToSlide((currentSlide - 1 + slides.length) % slides.length);
 
   return (
-    <section className="relative h-screen min-h-[600px] overflow-hidden">
+    <section className="relative h-screen min-h-[600px] overflow-hidden hero-preserve">
       <AnimatePresence mode="wait">
         <motion.div
           key={currentSlide}

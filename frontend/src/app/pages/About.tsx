@@ -5,10 +5,10 @@ import { Award, Target, Shield, Quote, GraduationCap, Star, MapPin, Calendar } f
 
 function PageHero() {
   return (
-    <section className="relative h-80 overflow-hidden">
+    <section className="relative h-80 overflow-hidden hero-preserve">
       <div className="absolute inset-0">
         <img
-          src="https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=600&fit=crop"
+          src="https://ajkksapt.com/images/Slider_Photos/image-slider-1.jpg"
           alt="About AJKKSAPT"
           className="w-full h-full object-cover"
           loading="eager"
@@ -90,7 +90,7 @@ export function About() {
             <div className="lg:col-span-1">
               <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }}>
                 <div className="aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20 relative">
-                  <img src="https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?w=500&h=625&fit=crop" alt="Dr. J.K.K. Munirajahh" className="w-full h-full object-cover" loading="lazy" />
+                  <img src="https://ajkksapt.com/images/About_Photos/Ayya.jpg" alt="Dr. J.K.K. Munirajahh" className="w-full h-full object-cover" loading="lazy" />
                   <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 to-transparent" />
                   <div className="absolute bottom-0 p-6">
                     <div className="text-[#D4AF37] font-black text-lg">Dr. J.K.K. Munirajahh</div>
@@ -183,7 +183,7 @@ export function About() {
             </motion.div>
             <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:col-span-2">
               <div className="aspect-square rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20 relative">
-                <img src="https://images.unsplash.com/photo-1551836022-d5d88e9218df?w=500&h=500&fit=crop" alt="Secretary" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://ajkksapt.com/images/About_Photos/Secretrary.jpg" alt="Mrs. M. Kasthuri Priya Kirubakar Murali" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 to-transparent" />
               </div>
             </motion.div>
@@ -197,7 +197,7 @@ export function About() {
           <div className="grid grid-cols-1 lg:grid-cols-5 gap-10 items-start">
             <motion.div initial={{ x: -30, opacity: 0 }} whileInView={{ x: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.8 }} className="lg:col-span-2">
               <div className="aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20 relative">
-                <img src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=500&h=625&fit=crop" alt="Principal Prof. P. Ramesh" className="w-full h-full object-cover" loading="lazy" />
+                <img src="https://ajkksapt.com/images/About_Photos/Principal.JPG" alt="Prof. P. Ramesh, Principal" className="w-full h-full object-cover" loading="lazy" />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A]/80 to-transparent" />
                 <div className="absolute bottom-0 p-5">
                   <div className="text-[#D4AF37] font-black">Prof. P. Ramesh</div>

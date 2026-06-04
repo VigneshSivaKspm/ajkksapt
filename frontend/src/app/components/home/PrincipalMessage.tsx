@@ -21,9 +21,9 @@ export function PrincipalMessage() {
             <div className="relative mx-auto lg:mx-0 max-w-sm">
               {/* Decorative frame */}
               <div className="absolute -inset-4 bg-gradient-to-br from-[#D4AF37]/20 to-transparent rounded-3xl" />
-              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20">
+              <div className="relative aspect-[4/5] rounded-2xl overflow-hidden border-2 border-[#D4AF37]/20 hero-preserve">
                 <img
-                  src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=600&h=750&fit=crop"
+                  src="https://ajkksapt.com/images/About_Photos/Principal2.JPG"
                   alt="Principal"
                   className="w-full h-full object-cover"
                   loading="lazy"

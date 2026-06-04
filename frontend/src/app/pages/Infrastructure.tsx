@@ -26,9 +26,9 @@ export function Infrastructure() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="relative h-72 overflow-hidden">
+      <section className="relative h-72 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
-          <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=600&fit=crop" alt="Infrastructure" className="w-full h-full object-cover" loading="eager" />
+          <img src="https://ajkksapt.com/images/Slider_Photos/image-slider-2.jpg" alt="AJKKSAPT Campus" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />
         </div>
         <div className="relative h-full flex items-center">
@@ -68,7 +68,7 @@ export function Infrastructure() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start">
               <div>
                 <div className="aspect-video rounded-2xl overflow-hidden border border-[#D4AF37]/10 mb-6">
-                  <img src="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=500&fit=crop" alt="Library" className="w-full h-full object-cover" loading="lazy" />
+                  <img src="https://ajkksapt.com/images/Gallery/Library.jpg" alt="Dr. JKK Munirajahh Library" className="w-full h-full object-cover" loading="lazy" />
                 </div>
                 <p className="text-[#6B7280] leading-relaxed text-sm">
                   The Dr. JKK Munirajahh Library, established in 2014, operates on an Open Access system with the motto: <strong className="text-[#FAFAFA]">"Books are for use and not for preservation."</strong> It provides an extensive collection covering all 10 engineering disciplines offered by the college.
@@ -122,7 +122,7 @@ export function Infrastructure() {
                   chief: "Prof. P. Ramesh (Principal)",
                   deputy: "Vadivel.P · SasiKumar.P",
                   assistant: "Dinesh.P · Dinesh.V",
-                  img: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=700&h=400&fit=crop",
+                  img: "https://ajkksapt.com/images/Gallery/Hostel.jpg",
                 },
                 {
                   name: "Girls' Hostel",
@@ -132,7 +132,7 @@ export function Infrastructure() {
                   chief: "Prof. P. Ramesh (Principal)",
                   deputy: "Mythily",
                   assistant: "Akiladevi",
-                  img: "https://images.unsplash.com/photo-1551836022-ddf4b8b4a4b2?w=700&h=400&fit=crop",
+                  img: "https://ajkksapt.com/images/Gallery/Hostel.jpg",
                 },
               ].map((hostel, i) => (
                 <div key={i} className="bg-[#111111] border border-[#D4AF37]/10 rounded-2xl overflow-hidden hover:border-[#D4AF37]/30 transition-all duration-500">
@@ -179,6 +179,9 @@ export function Infrastructure() {
               <span className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase">Transport Network</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-black text-[#FAFAFA] mb-8">Transport Facilities</h2>
+            <div className="mb-5 h-48 rounded-2xl overflow-hidden border border-[#D4AF37]/10">
+              <img src="https://ajkksapt.com/images/Gallery/Transport.jpg" alt="AJKKSAPT Transport Fleet" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </div>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
               <div className="lg:col-span-1 space-y-4">
                 {[{ value: "20", label: "Buses in Fleet" },{ value: "20", label: "Routes Covered" },{ value: "35", label: "Transport Staff" }].map((s, i) => (
@@ -233,6 +236,9 @@ export function Infrastructure() {
               <span className="text-[#D4AF37] text-xs font-bold tracking-widest uppercase">Sports & Fitness</span>
             </div>
             <h2 className="text-2xl md:text-3xl font-black text-[#FAFAFA] mb-8">Sports Facilities</h2>
+            <div className="mb-5 h-56 rounded-2xl overflow-hidden border border-[#D4AF37]/10">
+              <img src="https://ajkksapt.com/images/Gallery/Sports.jpg" alt="AJKKSAPT Sports Facilities" className="w-full h-full object-cover hover:scale-105 transition-transform duration-700" loading="lazy" />
+            </div>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div className="bg-[#111111] border border-[#D4AF37]/10 rounded-2xl p-6">
                 <div className="flex items-center gap-4 mb-5">
@@ -284,22 +290,29 @@ export function Infrastructure() {
         {/* Cafeteria + ATM + Placement */}
         <section className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {[
-            { id: "cafeteria", icon: Coffee, title: "Cafeteria", content: "A large spacious cafeteria with a view of greenery serves nutritious meals via college coupons. Students can purchase coupons in advance. The cafeteria is the most popular gathering spot on campus, promoting a healthy and social student culture.", rules: ["Maintain cleanliness","No casual loitering after meals","Coupons must be purchased in advance"] },
-            { id: "atm", icon: CreditCard, title: "KVB ATM", content: "A Kaveri Bank (KVB) ATM is located on the college premises, available 24 hours a day for students, staff, and hostel residents. Parents can deposit money directly into student accounts, ensuring convenient and secure access to funds.", rules: ["Available 24 hours","For students, staff & hostel residents","Parents can deposit directly to student accounts"] },
-            { id: "placement", icon: Briefcase, title: "Placement & Training Cell", content: "The Placement and Training Cell provides compulsory soft skill and vocational training throughout the year, coordinating with industries for campus recruitment. Five computer centers with 250 systems support the technical training programs.", rules: ["Compulsory soft skills training","Year-round vocational programs","Active industry coordination for placements"] },
+            { id: "cafeteria", icon: Coffee, title: "Cafeteria", img: "https://ajkksapt.com/images/Gallery/Cateen1.JPG", content: "A large spacious cafeteria with a view of greenery serves nutritious meals via college coupons. Students can purchase coupons in advance. The cafeteria is the most popular gathering spot on campus, promoting a healthy and social student culture.", rules: ["Maintain cleanliness","No casual loitering after meals","Coupons must be purchased in advance"] },
+            { id: "atm", icon: CreditCard, title: "KVB ATM", img: "https://ajkksapt.com/images/Gallery/KVB_ATM.jpg", content: "A Kaveri Bank (KVB) ATM is located on the college premises, available 24 hours a day for students, staff, and hostel residents. Parents can deposit money directly into student accounts, ensuring convenient and secure access to funds.", rules: ["Available 24 hours","For students, staff & hostel residents","Parents can deposit directly to student accounts"] },
+            { id: "placement", icon: Briefcase, title: "Placement & Training Cell", img: "https://ajkksapt.com/images/Gallery/Placementcell.jpg", content: "The Placement and Training Cell provides compulsory soft skill and vocational training throughout the year, coordinating with industries for campus recruitment. Five computer centers with 250 systems support the technical training programs.", rules: ["Compulsory soft skills training","Year-round vocational programs","Active industry coordination for placements"] },
           ].map((item) => (
             <motion.div key={item.id} id={item.id} initial={{ y: 30, opacity: 0 }} whileInView={{ y: 0, opacity: 1 }} viewport={{ once: true }} transition={{ duration: 0.7 }} className="scroll-mt-32">
-              <div className="bg-[#111111] border border-[#D4AF37]/10 rounded-2xl p-6 h-full hover:border-[#D4AF37]/30 transition-all duration-500">
-                <div className="w-12 h-12 bg-gradient-to-br from-[#D4AF37]/20 to-[#C5A059]/10 rounded-xl flex items-center justify-center mb-4">
-                  <item.icon size={22} className="text-[#D4AF37]" />
+              <div className="bg-[#111111] border border-[#D4AF37]/10 rounded-2xl overflow-hidden h-full hover:border-[#D4AF37]/30 transition-all duration-500 group">
+                <div className="h-36 overflow-hidden">
+                  <img src={item.img} alt={item.title} className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-700" loading="lazy" />
                 </div>
-                <h3 className="text-[#FAFAFA] font-black text-lg mb-3">{item.title}</h3>
-                <p className="text-[#6B7280] text-sm leading-relaxed mb-4">{item.content}</p>
-                <ul className="space-y-1.5">
-                  {item.rules.map((r, i) => (
-                    <li key={i} className="flex items-start gap-2 text-[#9CA3AF] text-xs"><ChevronRight size={12} className="text-[#D4AF37] mt-0.5 flex-shrink-0" />{r}</li>
-                  ))}
-                </ul>
+                <div className="p-6">
+                  <div className="flex items-center gap-3 mb-3">
+                    <div className="w-9 h-9 bg-gradient-to-br from-[#D4AF37]/20 to-[#C5A059]/10 rounded-xl flex items-center justify-center">
+                      <item.icon size={18} className="text-[#D4AF37]" />
+                    </div>
+                    <h3 className="text-[#FAFAFA] font-black">{item.title}</h3>
+                  </div>
+                  <p className="text-[#6B7280] text-sm leading-relaxed mb-3">{item.content}</p>
+                  <ul className="space-y-1.5">
+                    {item.rules.map((r, i) => (
+                      <li key={i} className="flex items-start gap-2 text-[#9CA3AF] text-xs"><ChevronRight size={12} className="text-[#D4AF37] mt-0.5 flex-shrink-0" />{r}</li>
+                    ))}
+                  </ul>
+                </div>
               </div>
             </motion.div>
           ))}

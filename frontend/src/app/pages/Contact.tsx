@@ -16,7 +16,7 @@ export function Contact() {
   return (
     <div className="min-h-screen pt-20">
       {/* Hero */}
-      <section className="relative h-64 overflow-hidden">
+      <section className="relative h-64 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1423666639041-f56000c27a9a?w=1920&h=500&fit=crop" alt="Contact" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />

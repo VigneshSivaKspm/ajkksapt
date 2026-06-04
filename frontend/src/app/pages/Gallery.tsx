@@ -4,25 +4,40 @@ import { X, ZoomIn } from "lucide-react";
 
 const categories = ["All", "Campus", "Labs", "Events", "Sports", "Community"];
 
+const DEPT = "https://ajkksapt.com/Files/Department";
+const GAL = "https://ajkksapt.com/images/Gallery";
+const SLIDER = "https://ajkksapt.com/images/Slider_Photos";
+
 const galleryItems = [
-  { id: 1, src: "https://images.unsplash.com/photo-1562774053-701939374585?w=800&h=600&fit=crop", alt: "Campus Building", category: "Campus" },
-  { id: 2, src: "https://images.unsplash.com/photo-1581091226825-a6a2a5aee158?w=800&h=600&fit=crop", alt: "Computer Lab", category: "Labs" },
-  { id: 3, src: "https://images.unsplash.com/photo-1523050854058-8df90110c9f1?w=800&h=600&fit=crop", alt: "College Entrance", category: "Campus" },
-  { id: 4, src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop", alt: "Annual Day Event", category: "Events" },
-  { id: 5, src: "https://images.unsplash.com/photo-1481627834876-b7833e8f5570?w=800&h=600&fit=crop", alt: "Library", category: "Campus" },
-  { id: 6, src: "https://images.unsplash.com/photo-1555854877-bab0e564b8d5?w=800&h=600&fit=crop", alt: "Hostel", category: "Campus" },
-  { id: 7, src: "https://images.unsplash.com/photo-1517048676732-d65bc937f952?w=800&h=600&fit=crop", alt: "Workshop", category: "Events" },
-  { id: 8, src: "https://images.unsplash.com/photo-1531482615713-2afd69097998?w=800&h=600&fit=crop", alt: "Student Achievement", category: "Events" },
-  { id: 9, src: "https://images.unsplash.com/photo-1504711434969-e33886168f5c?w=800&h=600&fit=crop", alt: "Sports Day", category: "Sports" },
-  { id: 10, src: "https://images.unsplash.com/photo-1521737711867-e3b97375f902?w=800&h=600&fit=crop", alt: "Placement Drive", category: "Events" },
-  { id: 11, src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop", alt: "Community Service", category: "Community" },
-  { id: 12, src: "https://images.unsplash.com/photo-1513258496099-48168024aec0?w=800&h=600&fit=crop", alt: "Exam Hall", category: "Campus" },
-  { id: 13, src: "https://images.unsplash.com/photo-1609234656432-603bcc81a3f9?w=800&h=600&fit=crop", alt: "Mechanical Lab", category: "Labs" },
-  { id: 14, src: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?w=800&h=600&fit=crop", alt: "Electronics Lab", category: "Labs" },
-  { id: 15, src: "https://images.unsplash.com/photo-1542744095-fcf48d80b0fd?w=800&h=600&fit=crop", alt: "NSS Camp", category: "Community" },
-  { id: 16, src: "https://images.unsplash.com/photo-1551836022-4d4a9f3f4d2e?w=800&h=600&fit=crop", alt: "Cricket Match", category: "Sports" },
-  { id: 17, src: "https://images.unsplash.com/photo-1560250097-0b93528c311a?w=800&h=600&fit=crop", alt: "Seminar", category: "Events" },
-  { id: 18, src: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=800&h=600&fit=crop", alt: "Faculty", category: "Campus" },
+  // Real campus photos from slider
+  { id: 1, src: `${SLIDER}/image-slider-1.jpg`, alt: "AJKKSAPT Campus", category: "Campus" },
+  { id: 2, src: `${SLIDER}/image-slider-2.jpg`, alt: "College Building", category: "Campus" },
+  { id: 3, src: `${SLIDER}/image-slider-3.jpg`, alt: "National Award", category: "Events" },
+  { id: 4, src: `${SLIDER}/image-slider-4.jpg`, alt: "College Activities", category: "Events" },
+  { id: 5, src: `${SLIDER}/image-slider-5.jpg`, alt: "Annual Day & Sports Day", category: "Sports" },
+  // Real infrastructure photos
+  { id: 6, src: `${GAL}/Library.jpg`, alt: "Dr. JKK Munirajahh Library", category: "Campus" },
+  { id: 7, src: `${GAL}/Hostel.jpg`, alt: "Boys Hostel", category: "Campus" },
+  { id: 8, src: `${GAL}/Sports.jpg`, alt: "Sports Facilities", category: "Sports" },
+  { id: 9, src: `${GAL}/Transport.jpg`, alt: "Transport Fleet", category: "Campus" },
+  { id: 10, src: `${GAL}/Cateen1.JPG`, alt: "College Cafeteria", category: "Campus" },
+  { id: 11, src: `${GAL}/KVB_ATM.jpg`, alt: "KVB ATM", category: "Campus" },
+  { id: 12, src: `${GAL}/Placementcell.jpg`, alt: "Placement Cell", category: "Events" },
+  // Real department lab photos
+  { id: 13, src: `${DEPT}/Civil/Civil_Laboratry/Lab1.JPG`, alt: "Civil Engineering Lab", category: "Labs" },
+  { id: 14, src: `${DEPT}/Mechanical/Mech_Laboratry/Lab1.JPG`, alt: "Mechanical Lab", category: "Labs" },
+  { id: 15, src: `${DEPT}/Automobile/AM_Laboratry/Lab1.JPG`, alt: "Automobile Engineering Lab", category: "Labs" },
+  { id: 16, src: `${DEPT}/EEE/Eee_Laboratry/Lab1.JPG`, alt: "EEE Lab", category: "Labs" },
+  { id: 17, src: `${DEPT}/ECE/Ece_Laboratry/Lab1.JPG`, alt: "ECE Lab", category: "Labs" },
+  { id: 18, src: `${DEPT}/Computer/Cse_Laboratry/Lab1.jpg`, alt: "Computer Lab", category: "Labs" },
+  { id: 19, src: `${DEPT}/Civil/Civil_Laboratry/Lab2.JPG`, alt: "Civil Lab 2", category: "Labs" },
+  { id: 20, src: `${DEPT}/Mechanical/Mech_Laboratry/Lab2.JPG`, alt: "Mechanical Lab 2", category: "Labs" },
+  { id: 21, src: `${DEPT}/Automobile/AM_Laboratry/Lab2.JPG`, alt: "Automobile Lab 2", category: "Labs" },
+  { id: 22, src: `${DEPT}/Chemical/Che_PChe_Laboratry/Lab1.JPG`, alt: "Chemical Engineering Lab", category: "Labs" },
+  { id: 23, src: `${DEPT}/Textile/TT_TP_Laboratry/Lab1.JPG`, alt: "Textile Lab", category: "Labs" },
+  // Fallback with Unsplash for community
+  { id: 24, src: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?w=800&h=600&fit=crop", alt: "Community Service", category: "Community" },
+  { id: 25, src: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&h=600&fit=crop", alt: "NSS Activities", category: "Community" },
 ];
 
 export function Gallery() {
@@ -33,7 +48,7 @@ export function Gallery() {
 
   return (
     <div className="min-h-screen pt-20">
-      <section className="relative h-64 overflow-hidden">
+      <section className="relative h-64 overflow-hidden hero-preserve">
         <div className="absolute inset-0">
           <img src="https://images.unsplash.com/photo-1562774053-701939374585?w=1920&h=500&fit=crop" alt="Gallery" className="w-full h-full object-cover" loading="eager" />
           <div className="absolute inset-0 bg-gradient-to-r from-[#0A0A0A]/97 via-[#0A0A0A]/80 to-[#0A0A0A]/50" />
