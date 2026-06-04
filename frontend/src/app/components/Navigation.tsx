@@ -13,6 +13,7 @@ import {
 } from "lucide-react";
 import { motion, AnimatePresence } from "motion/react";
 import { useTheme } from "../contexts/ThemeContext";
+import { CollegeHeader } from "./CollegeHeader";
 
 const aboutLinks = [
   { label: "Trust & Founder", path: "/about#trust" },
@@ -118,9 +119,9 @@ export function Navigation() {
 
   return (
     <>
-      {/* Top Info Bar */}
+      {/* Top Info Bar - Will hide on scroll */}
       <div
-        className={`hidden lg:block border-b relative z-50 transition-colors duration-300 ${isDark ? "bg-[#0D0D0D] border-[#D4AF37]/10" : "bg-[#F0F4FF] border-[#D4AF37]/15"}`}
+        className={`hidden lg:block border-b relative transition-all duration-300 ${isScrolled ? "hidden" : "block"} ${isDark ? "bg-[#0D0D0D] border-[#D4AF37]/10" : "bg-[#F0F4FF] border-[#D4AF37]/15"}`}
       >
         <div className="max-w-7xl mx-auto px-6 lg:px-8">
           <div className="flex items-center justify-between h-10">
@@ -165,62 +166,35 @@ export function Navigation() {
         </div>
       </div>
 
-      {/* Main Navigation */}
+      {/* College Header - Below Top Info Bar */}
+      <CollegeHeader />
+
+      {/* Main Navigation - Sticky */}
       <motion.nav
-        initial={{ y: -100 }}
+        initial={{ y: 0 }}
         animate={{ y: 0 }}
         transition={{ duration: 0.6, ease: "easeOut" }}
-        className={`fixed top-0 left-0 right-0 z-40 transition-all duration-500 lg:sticky lg:top-0 ${
+        className={`sticky top-20 z-40 transition-all duration-500 border-b ${
           isScrolled
             ? isDark
-              ? "bg-[#0A0A0A]/96 backdrop-blur-xl border-b border-[#D4AF37]/10 shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
-              : "bg-white/96 backdrop-blur-xl border-b border-[#D4AF37]/15 shadow-[0_2px_20px_rgba(15,23,42,0.08)]"
+              ? "bg-[#0A0A0A]/96 backdrop-blur-xl border-[#D4AF37]/10 shadow-[0_4px_24px_rgba(0,0,0,0.6)]"
+              : "bg-white/96 backdrop-blur-xl border-[#D4AF37]/15 shadow-[0_2px_20px_rgba(15,23,42,0.08)]"
             : isDark
-              ? "bg-[#0A0A0A]"
-              : "bg-white border-b border-[#D4AF37]/10"
+              ? "bg-[#0A0A0A] border-[#D4AF37]/10"
+              : "bg-white border-[#D4AF37]/10"
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 lg:px-8">
-          <div className="flex items-center justify-between h-20">
-            {/* Logo */}
-            <Link
-              to="/"
-              className="flex items-center space-x-3 group flex-shrink-0"
-            >
-              <div className="relative">
-                <div className="w-12 h-12 rounded-xl overflow-hidden bg-white flex items-center justify-center transition-all duration-300 group-hover:scale-110 group-hover:shadow-[0_0_20px_rgba(212,175,55,0.4)] border border-[#D4AF37]/20">
-                  <img
-                    src="https://ajkksapt.com/images/Home_Page/Logo.PNG"
-                    alt="AJKKSAPT Logo"
-                    className="w-full h-full object-contain"
-                    onError={(e) => {
-                      (e.currentTarget as HTMLImageElement).style.display =
-                        "none";
-                      (e.currentTarget.parentElement as HTMLElement).innerHTML =
-                        '<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#D4AF37" stroke-width="2"><path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/></svg>';
-                    }}
-                  />
-                </div>
-              </div>
-              <div className="hidden xs:block">
-                <div className="text-[#FAFAFA] font-extrabold text-xs sm:text-sm md:text-base tracking-tight leading-tight">
-                  Annai J.K.K Sampoorani Ammal
-                </div>
-                <div className="text-[#FAFAFA] font-extrabold text-xs sm:text-sm md:text-base tracking-tight leading-tight">
-                  Polytechnic College
-                </div>
-                <div className="text-[#D4AF37] text-[8px] sm:text-[9px] tracking-widest uppercase leading-tight">
-                  Est. 1984 · Gobichettipalayam
-                </div>
-              </div>
-            </Link>
+          <div className="flex items-center justify-between h-10 sm:h-12">
+            {/* Navigation Branding - Hidden on smaller screens */}
+            <div className="flex-shrink-0 w-0 sm:w-auto" />
 
             {/* Desktop Navigation */}
             <div className="hidden xl:flex items-center space-x-0">
               {/* Home */}
               <Link
                 to="/"
-                className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
+                className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 relative group ${
                   isActive("/")
                     ? "text-[#D4AF37]"
                     : "text-[#FAFAFA] hover:text-[#D4AF37]"
@@ -240,7 +214,7 @@ export function Navigation() {
               >
                 <Link
                   to="/about"
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center space-x-1 relative group ${
+                  className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 flex items-center space-x-1 relative group ${
                     isActive("/about")
                       ? "text-[#D4AF37]"
                       : "text-[#FAFAFA] hover:text-[#D4AF37]"
@@ -248,7 +222,7 @@ export function Navigation() {
                 >
                   <span>About Us</span>
                   <ChevronDown
-                    size={14}
+                    size={12}
                     className={`transition-transform duration-300 ${activeDropdown === "about" ? "rotate-180" : ""}`}
                   />
                   <span
@@ -288,7 +262,7 @@ export function Navigation() {
               >
                 <Link
                   to="/departments"
-                  className={`px-3 py-2 text-sm font-medium transition-all duration-300 flex items-center space-x-1 relative group ${
+                  className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 flex items-center space-x-1 relative group ${
                     isActive("/departments")
                       ? "text-[#D4AF37]"
                       : "text-[#FAFAFA] hover:text-[#D4AF37]"
@@ -296,7 +270,7 @@ export function Navigation() {
                 >
                   <span>Departments</span>
                   <ChevronDown
-                    size={14}
+                    size={12}
                     className={`transition-transform duration-300 ${activeDropdown === "departments" ? "rotate-180" : ""}`}
                   />
                   <span
@@ -346,7 +320,7 @@ export function Navigation() {
               {/* Examination */}
               <Link
                 to="/examination"
-                className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
+                className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 relative group ${
                   isActive("/examination")
                     ? "text-[#D4AF37]"
                     : "text-[#FAFAFA] hover:text-[#D4AF37]"
@@ -361,7 +335,7 @@ export function Navigation() {
               {/* Infrastructure */}
               <Link
                 to="/infrastructure"
-                className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
+                className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 relative group ${
                   isActive("/infrastructure")
                     ? "text-[#D4AF37]"
                     : "text-[#FAFAFA] hover:text-[#D4AF37]"
@@ -439,7 +413,7 @@ export function Navigation() {
               {/* Contact */}
               <Link
                 to="/contact"
-                className={`px-3 py-2 text-sm font-medium transition-all duration-300 relative group ${
+                className={`px-2.5 py-1 text-xs font-medium transition-all duration-300 relative group ${
                   isActive("/contact")
                     ? "text-[#D4AF37]"
                     : "text-[#FAFAFA] hover:text-[#D4AF37]"
